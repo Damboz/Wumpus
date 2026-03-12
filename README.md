@@ -1,185 +1,96 @@
 # Wumpus World Game (Java)
 
-# Overview
+## Overview
 
-This project is a Java implementation of the classic Wumpus World game used in Artificial Intelligence to demonstrate **agent-based environments, percepts, and decision making**.
+This project is a Java console implementation of the Wumpus World, a classic Artificial Intelligence environment where an agent explores a grid world, avoids hazards (pits and the Wumpus), and attempts to find the gold. The agent can also shoot an arrow to kill the Wumpus.
 
-The player controls an agent navigating a grid world containing:
+## Features
 
- A Wumpus (dangerous creature)
- Pits (deadly holes)
- Gold (the goal)
+> 4×4 grid-based world
+>  Random placement of Wumpus, pits, and gold
+> Percepts system (stench, breeze, glitter)
+> Keyboard-controlled agent movement
+> Arrow shooting to kill the Wumpus
+> Score tracking
+> Hidden grid during gameplay and full grid revealed at game over
 
-The agent must avoid hazards, use percepts to reason about the environment, and attempt to **find the gold**. The agent also has **one arrow** that can be used to kill the Wumpus.
-# Features
+## Classes in the Project
 
-Grid-based Wumpus World environment
-Random placement of:
+## 1. WumpusGame
 
-   Wumpus
-   Pits
-   Gold
-# Percept system
+This class represents the game environment (world).
 
-stench → Wumpus nearby
-breeze → Pit nearby
-glitter → Gold in current cell
-Keyboard-based agent movement
-* **Arrow shooting system**
-* Score tracking
-* Hidden world during gameplay
-* Full world revealed at game over
+Responsibilities:
 
----
+> Creates the grid world
+> Randomly places gold, pits, and the Wumpus
+> Tracks the agent position
+> Generates percepts (stench, breeze, glitter)
+> Handles agent movement
+> Handles arrow shooting
+> Updates score and game status
+> Displays the game grid
+## 2. WumpusAgent
 
-## Game Controls
+This class represents the player-controlled agent.
+## Responsibilities:
 
-| Key   | Action      |
-| ----- | ----------- |
-| **W** | Move Up     |
-| **S** | Move Down   |
-| **A** | Move Left   |
-| **D** | Move Right  |
-| **F** | Shoot Arrow |
-| **Q** | Quit Game   |
+> Accepts keyboard input from the player
+> Allows the player to move the agent
+> Allows the player to shoot an arrow
+> Displays the percepts received from the environment
+> Controls the main game loop
+ ## 3. Main
 
-When shooting an arrow, you must also choose a direction using **W/A/S/D**.
+This class is the entry point of the program.
 
----
+Responsibilities:
 
-## Game Rules
+> Creates the game world
+> Creates the agent
+> Starts the game execution
 
-1. The agent starts at position **(0,0)**.
-2. The world is a **4 × 4 grid**.
-3. The world contains:
-
-   * **1 Wumpus**
-   * **2 Pits**
-   * **1 Gold**
-4. If the agent:
-
-   * Falls into a **pit** → Game Over
-   * Meets the **Wumpus** → Game Over
-   * Finds the **gold** → Player wins
-5. The agent has **only one arrow** to kill the Wumpus.
-
----
+## Controls
+# Key       Action
+ W          Move Up
+ S          Move Down
+ A          Move Left
+ F          shoot Arrow
+ Q          Quit Game
 
 ## Percepts
-
-The agent receives clues about nearby hazards:
-
-| Percept     | Meaning                           |
-| ----------- | --------------------------------- |
-| **Stench**  | Wumpus is in a neighboring square |
-| **Breeze**  | Pit is in a neighboring square    |
-| **Glitter** | Gold is in the current square     |
-
-Example output:
-
-```
-Percepts: {stench=true, breeze=false, glitter=false}
-```
-
----
+# Stench
+ Wumpus is in a neighboring square.
+# Breeze
+ A pit is in a neighboring square
+# Glitter
+Gold is in the current square  
 
 ## Scoring System
 
-| Action          | Score |
-| --------------- | ----- |
-| Move            | -1    |
-| Kill Wumpus     | +500  |
-| Find Gold       | +1000 |
-| Fall into Pit   | -1000 |
-| Eaten by Wumpus | -1000 |
+# Event                              Score
+ Move                                -1
+ Kill wumpus                         +500
+ Find Gold                           +1000
+ Fall into pit / Eaten by Wumpus     -1000
 
----
+## How to Run
 
-## Project Structure
+Compile the program:
 
-```
-WumpusWorld/
-│
-├── WumpusGame.java
-├── WumpusAgent.java
-├── Main.java
-└── README.md
-```
-
-### Classes
-
-**WumpusGame**
-
-* Creates the world grid
-* Places hazards
-* Handles movement
-* Calculates percepts
-* Handles arrow shooting
-
-**WumpusAgent**
-
-* Accepts player input
-* Controls the agent actions
-* Displays percepts
-
-**Main**
-
-* Starts the game
-
----
-
-## How to Compile and Run
-
-### 1. Compile
-
-```bash
+bash
 javac WumpusGame.java
-```
 
-### 2. Run
+Run the program:
 
-```bash
+bash
 java Wumpus.Main
-```
 
----
+Purpose
 
-## Example Gameplay
+This project demonstrates important Artificial Intelligence concepts, including:
 
-```
-WORLD GRID
-
-A . . .
-. . . .
-. . . .
-. . . .
-
-Percepts: {stench=true, breeze=false, glitter=false}
-
-Choose Move:
-W = Up | S = Down | A = Left | D = Right
-F = Shoot Arrow | Q = Quit
-
-## Concepts Demonstrated
-
-This project demonstrates important **Artificial Intelligence concepts**:
-
-* Intelligent agents
-* Environment perception
-* Grid-world modeling
-* Hazard detection
-* Decision-based actions
-* Game simulation
-
-## Possible Improvements
-
-Future improvements may include:
-
-* Multiple arrows
-* Smarter AI agent
-* Arrow traveling across the grid
-* Graphical user interface (GUI)
-* Larger world sizes
-* Multiple Wumpus creatures
-* Pathfinding algorithms (A*)
-
+> Intelligent agents
+> Environment perception
+* Grid-based environments
+* Decision making under uncertainty
